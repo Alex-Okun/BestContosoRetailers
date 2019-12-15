@@ -1,48 +1,29 @@
 'use strict';
 const inquirer = require('inquirer');
+const fs = require('fs');
 
-var inventory = [{
-    id: '123',
-    name: 'Radical Condor',
-    author: 'Kim scott',
-    witdth: 13,
-    hight: 14
-},
-{
-    id: '234',
-    name: 'I am Malala',
-    author: 'Malala Yousafzai',
-    witdth: 10,
-    hight: 12
-}, {
-    id: '345',
-    name: 'Limitless',
-    author: 'Laura Gassner Otting',
-    witdth: 13,
-    hight: 14
-},
-{
-    id: '456',
-    name: 'Calling the one',
-    author: 'Katherine Woodward Thomas',
-    witdth: 10,
-    hight: 12
-    }];
+function getInventory() {
+    var data = fs.readFileSync('inventory.json');
+    var inventoryJSON = JSON.parse(data);
+    return inventoryJSON.inventory;
+}
 
-var shipingList = [{
-    id: '345',
-    name: 'Limitless',
-    author: 'Laura Gassner Otting',
-    witdth: 13,
-    hight: 14
-},
-{
-    id: '456',
-    name: 'Calling the one',
-    author: 'Katherine Woodward Thomas',
-    witdth: 10,
-    hight: 12
-}];
+function getShipmentInventory() {
+    var data = fs.readFileSync('shipment.json');
+    var shipmentJSON = JSON.parse(data);
+    return shipmentJSON.shipment;
+}
+
+function updateInventory(inventoryType, newInventory) {
+    let jsonToSave = {};
+    jsonToSave[inventoryType] = newInventory;
+
+    var data = JSON.stringify(jsonToSave, null, 2);
+    fs.writeFileSync(inventoryType + '.json', data, finished);
+    function finished(info) {
+        console.log('Seems like everything went smooth' + info);
+    }
+}
 
 function nextCommand() {
     var questions = [{
@@ -81,14 +62,19 @@ function translateAnswer(command) {
         var id = command.replace('-order', '');
         if (id) {
             orderBook(id.trim());
+        } else {
+            console.log('You didn\'t specify what book, please try again');
+            nextCommand();
         }
     }
     else if (command.startsWith('-return')) {
         var id = command.replace('-return', '');
         if (id) {
             returnBookToStock(id.trim());
+        } else {
+            console.log('You didn\'t specify what book, please try again');
+            nextCommand();
         }
-
     } else {
         nextCommand();
     }
@@ -100,7 +86,6 @@ function translateAnswer(command) {
  * @param {object} oBook
  */
 function moveFromOneListToAnother(aSourceStock, aTargetStock, oBook) {
-   
         addBookToTheList(aTargetStock, oBook); //TODO add a recovery in case that failed
         let index = getBookPlaceInTheList(aSourceStock, oBook);
         removeBookFromTheList(aSourceStock, index);
@@ -135,6 +120,7 @@ function getList(command) {
 
 function getStockList() {
     console.log('Currently in Stock');
+    let inventory = getInventory();
     for (let i = 0; i < inventory.length; i++) {
         printBookInformation(inventory, i);
     }
@@ -142,9 +128,14 @@ function getStockList() {
 }
 
 function getShipmentList() {
-    console.log('To Be Shipped');
-    for (let i = 0; i < shipingList.length; i++) {
-        printBookInformation(shipingList, i);
+    let shipingList = getShipmentInventory();
+    if (shipingList.length === 0) {
+        console.log('There is nothing in shiping list');
+    } else {
+        console.log('To Be Shipped');
+        for (let i = 0; i < shipingList.length; i++) {
+            printBookInformation(shipingList, i);
+        }
     }
     nextCommand();
 }
@@ -153,8 +144,11 @@ function getBookInfo(aInventory, sID) {
     function findTheBook(book) {
         return book.id === sID;
     }
-
-    let obj = aInventory.find(findTheBook);
+    let obj;
+    if (aInventory && aInventory.length > 0) {
+        obj = aInventory.find(findTheBook);
+    }
+    
     if (obj) {
         return obj;
     } else {
@@ -170,9 +164,9 @@ function getBookPlaceInTheList(aInventory, oBook) {
 
 }
 
-
 function displayBookInfo(sID) {
-    let oBook = getBookInfo(inventory, sID);
+    let aInventory = getInventory();
+    let oBook = getBookInfo(aInventory, sID);
     if (oBook) {
         console.log('Information about this book');
         printBookInformation([oBook],0);
@@ -183,15 +177,22 @@ function displayBookInfo(sID) {
 }
 
 function orderBook(sID) {
-      //todo find the book
+    let inventory = getInventory();
+    let shipingList = getShipmentInventory();
     let oBook = getBookInfo(inventory, sID)
+    
     moveFromOneListToAnother(inventory, shipingList, oBook);
+    updateInventory('inventory', inventory);
+    updateInventory('shipment', shipingList);
 }
 
 function returnBookToStock(sID) {
-    //todo find the book 
-    let oBook = getBookInfo(shipingList, sID)
+    let inventory = getInventory();
+    let shipingList = getShipmentInventory();
+    let oBook = getBookInfo(shipingList, sID);
     moveFromOneListToAnother(shipingList, inventory, oBook);
+    updateInventory('inventory', inventory);
+    updateInventory('shipment', shipingList);
 }
 
 function printHelpOptions() {

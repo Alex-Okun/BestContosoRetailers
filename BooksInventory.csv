@@ -1,0 +1,2 @@
+﻿PartitionKey,RowKey,Timestamp,author:System.String,hight:System.Int32,ISBN:System.String,name:System.String,width:System.Int32
+,,14-Dec-19 22:19:09,"Malala Yousafzai","12","123-12B-23","I am Malala","10"

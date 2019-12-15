@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4ce1e63d-06b2-4bce-9e23-0e32008b16aa</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>Sales\app.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -28,9 +28,31 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.js" />
+    <Content Include="Sales\app.js" />
+    <Content Include="dbo.bookInventory.sql" />
+    <Content Include="inventory.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="Security\authentication.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Security\user.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="shipment.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Test\UnitTest1.js">
+      <SubType>Code</SubType>
+      <TestFramework>ExportRunner</TestFramework>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sales\" />
+    <Folder Include="Test\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>
