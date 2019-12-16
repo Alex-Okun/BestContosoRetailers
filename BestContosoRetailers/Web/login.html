@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Log Page</title>
+</head>
+<body>
+    <h1>Login page</h1>
+    <script>
+        console.log("Yay second page 111");
+        //async function getUserShipmentList() {
+        //    const response = await fetch('shipment.json');
+        //    console.log(response);
+        //}
+        getInStockList();
+
+        async function getInStockList() {
+            const data = {
+                list : 'inStock'
+            }
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            };
+            const response = await fetch('api/', options);
+            const json = await response.json();
+            console.log(json);         
+        }
+    </script >
+</body>
+</html>

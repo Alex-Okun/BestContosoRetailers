@@ -2,6 +2,18 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+class Inventory {
+    constructor() {
+        this.data = {};
+    }
+}
+
+Inventory.prototype.getInvetory = function () {
+    var data = fs.readFileSync('inventory.json');
+    var inventoryJSON = JSON.parse(data);
+    return inventoryJSON.inventory;
+}
+
 function getInventory() {
     var data = fs.readFileSync('inventory.json');
     var inventoryJSON = JSON.parse(data);
@@ -38,6 +50,7 @@ function nextCommand() {
         } 
     })
 }
+
 /**
  * 
  * @param {string} command to execute 
@@ -86,12 +99,12 @@ function translateAnswer(command) {
  * @param {object} oBook
  */
 function moveFromOneListToAnother(aSourceStock, aTargetStock, oBook) {
-        addBookToTheList(aTargetStock, oBook); //TODO add a recovery in case that failed
-        let index = getBookPlaceInTheList(aSourceStock, oBook);
-        removeBookFromTheList(aSourceStock, index);
+    addBookToTheList(aTargetStock, oBook); //TODO add a recovery in case that failed
+    let index = getBookPlaceInTheList(aSourceStock, oBook);
+    removeBookFromTheList(aSourceStock, index);
 
-        console.log('All done!');
-        nextCommand();
+    console.log('All done!');
+    nextCommand();
     //TODO I need to make sure that the array will be returned always sorted by name 
 }
 
@@ -215,4 +228,4 @@ function printBookInformation(aBookInfo, index) {
     }
 }
 
-nextCommand();
+//nextCommand();
