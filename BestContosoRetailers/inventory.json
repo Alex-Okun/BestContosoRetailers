@@ -2,35 +2,19 @@
   "inventory": [
     {
       "id": "456",
-      "name": "Calling the one",
-      "author": "Katherine Woodward Thomas",
-      "count": 10,
-      "witdth": 10,
-      "hight": 12
+      "count": 10
     },
     {
       "id": "123",
-      "name": "Limitless",
-      "author": "Laura Gassner Otting",
-      "count": 10,
-      "witdth": 13,
-      "hight": 14
+      "count": 10
     },
     {
       "id": "234",
-      "name": "I am Malala",
-      "author": "Malala Yousafzai",
-      "count": 1,
-      "witdth": 10,
-      "hight": 12
+      "count": 1
     },
     {
       "id": "345",
-      "name": "Limitless",
-      "author": "Laura Gassner Otting",
-      "count": 8,
-      "witdth": 13,
-      "hight": 14
+      "count": 8
     }
   ]
 }

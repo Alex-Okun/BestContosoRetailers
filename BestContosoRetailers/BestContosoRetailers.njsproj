@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4ce1e63d-06b2-4bce-9e23-0e32008b16aa</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>App\authentication.js</StartupFile>
+    <StartupFile>App\main.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -28,17 +28,26 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="App\Book.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="App\Inventory.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="App\main.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="index.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="App\app.js" />
     <Content Include="dbo.bookInventory.sql" />
+    <Content Include="books.json" />
     <Content Include="inventory.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="App\authentication.js">
+    <Content Include="App\Register.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="App\User.js">
@@ -46,10 +55,6 @@
     </Content>
     <Content Include="shipment.json">
       <SubType>Code</SubType>
-    </Content>
-    <Content Include="Test\UnitTest1.js">
-      <SubType>Code</SubType>
-      <TestFramework>ExportRunner</TestFramework>
     </Content>
     <Content Include="Web\index.html">
       <SubType>Code</SubType>
@@ -65,7 +70,6 @@
     <Folder Include="Web\" />
     <Folder Include="Web\server\" />
     <Folder Include="Web\ui\" />
-    <Folder Include="Test\" />
     <Folder Include="App\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

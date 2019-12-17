@@ -2,9 +2,12 @@
   "name": "best-contoso-retailers",
   "version": "0.0.0",
   "description": "BestContosoRetailers",
-  "main": "app.js",
+  "main": "main.js",
   "author": {
-    "name": ""
+    "name": "Alexandra Okun"
+  },
+  "scripts": {
+    "test": "main.js "
   },
   "dependencies": {
     "body-parser": "^1.19.0",

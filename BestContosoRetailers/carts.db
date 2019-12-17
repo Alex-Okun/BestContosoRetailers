@@ -1,0 +1,3 @@
+{"user":"45","cart":[{"book":"456","count":"2"}],"_id":"XZawq05bqdesG5pD"}
+{"user":"333","cart":[{"book":"123","count":"2"}],"_id":"ZNDovgfTto0oqZAP"}
+{"$$indexCreated":{"fieldName":"user","unique":true,"sparse":false}}
