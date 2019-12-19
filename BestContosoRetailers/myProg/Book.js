@@ -11,28 +11,34 @@ Book.prototype.printBookInformation = function (id) {
     }
 
     this.getBookDetails(id);
-    console.log('\nISBN  : ' + this.data.id);
-    console.log('Name  : ' + this.data.name);
-    console.log('Author: ' + this.data.author);
-    console.log('Width : ' + this.data.width);
-    console.log('Hight : ' + this.data.hight);
+
+    if (this.data.id || this.data.name) {
+        console.log('\nISBN  : ' + this.data.id);
+        console.log('Name  : ' + (this.data.name || 'wasn\'t specified'));
+        console.log('Author: ' + (this.data.author || 'wasn\'t specified'));
+        console.log('Width : ' + (this.data.width || 'wasn\'t specified'));
+        console.log('Hight : ' + (this.data.hight || 'wasn\'t specified'));
+    } else {
+        console.log('Couldn\'t find the book, are you sure about the book id you provided');
+    }
+   
 }
 
 Book.prototype.getBookDetails = function (id) {
-    var aBooks = getAllBooks();
-    var oBooks = id ? getBookInfo(aBooks, id) : '';
+    var aBooks = _getAllBooks();
+    var oBooks = id ? _getBookInfo(aBooks, id) : '';
     this.data = oBooks;
     return oBooks;
 }
 
-function getAllBooks() {
+function _getAllBooks() {
     const fs = require('fs');
     var data = fs.readFileSync('books.json');
     var inventoryJSON = JSON.parse(data);
     return inventoryJSON.books;
 }
 
-function getBookInfo(aBooks, sid) {
+function _getBookInfo(aBooks, sid) {
     function findTheBook(book) {
         return book.id === sid;
     }
@@ -42,22 +48,8 @@ function getBookInfo(aBooks, sid) {
     }
     
     if (obj) {
-        this.data = obj
         return obj;
     } else {
         return;
     }
-}
-
-function addNewBook() {
-
-
-}
-///========================================================
-
-
-function getShoppingDB() {
-    const db = new Datastore('shoppingCarts.db');
-    db.loadDatabase();
-    return db;
 }

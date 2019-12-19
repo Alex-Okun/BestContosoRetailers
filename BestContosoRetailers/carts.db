@@ -1,3 +1,4 @@
-{"user":"45","cart":[{"book":"456","count":"2"}],"_id":"XZawq05bqdesG5pD"}
-{"user":"333","cart":[{"book":"123","count":"2"}],"_id":"ZNDovgfTto0oqZAP"}
+{"user":"1","cart":[{"book":"123","count":"2"}],"_id":"8tSGuN3sqcEFOgOO"}
 {"$$indexCreated":{"fieldName":"user","unique":true,"sparse":false}}
+{"user":"1","cart":[{"book":"123","count":"3"}],"_id":"8tSGuN3sqcEFOgOO"}
+{"user":"1","cart":[{"book":"123","count":"2"}],"_id":"8tSGuN3sqcEFOgOO"}

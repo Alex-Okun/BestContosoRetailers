@@ -1,20 +1,24 @@
 {
   "inventory": [
     {
-      "id": "456",
-      "count": 10
-    },
-    {
       "id": "123",
-      "count": 10
+      "count": 5
     },
     {
       "id": "234",
-      "count": 1
+      "count": 8
     },
     {
       "id": "345",
-      "count": 8
+      "count": 2
+    },
+    {
+      "id": "456",
+      "count": 7
+    },
+    {
+      "id": "567",
+      "count": 3
     }
   ]
 }

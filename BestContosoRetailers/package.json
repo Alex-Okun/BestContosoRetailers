@@ -1,20 +1,16 @@
 {
   "name": "best-contoso-retailers",
-  "version": "0.0.0",
+  "version": "1.0.3",
   "description": "BestContosoRetailers",
-  "main": "main.js",
+  "main": "myProg/main.js",
   "author": {
     "name": "Alexandra Okun"
-  },
-  "scripts": {
-    "test": "main.js "
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "crypto-json": "^2.0.2",
     "express": "^4.17.1",
     "mysql": "^2.17.1",
-    "nedb": "^1.8.0",
-    "simple-crypto-js": "^2.2.0"
+    "nedb": "^1.8.0"
   }
 }
